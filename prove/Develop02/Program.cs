@@ -4,22 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.WriteLine("Hello Develop02 World!");
-
-        //PromptGenerator journalprompt = new PromptGenerator();
-        //Console.WriteLine($"{journalprompt.displayPrompt()}"); Don't need these anymore
-
-        //UserEntry entry = new UserEntry();
-        //Console.WriteLine(entry._prompt);
-        //Console.Write("> ");
-
-        //entry._userResponse = Console.ReadLine();
-
-        //entry.displayEntry();
-
         int userChoice = -1;
 
         Console.WriteLine("Welcome to the Journal Program!");//Welcom and generate menu for the user
+
+
         // new instance of the storeJournal class to add entries to the list and print them out
         Journal newEntry = new Journal();
         do
@@ -69,7 +58,6 @@ class Program
                     // save the entries to a text file
                     Console.Write("Please enter a name for your file (eg. myfile.txt): ");
                     newEntry._fileName = Console.ReadLine().ToLower();
-
                    
                     Console.WriteLine();
 
