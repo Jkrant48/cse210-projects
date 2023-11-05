@@ -38,6 +38,7 @@ public class ListingActivity : Activity
 
         Console.Write("Enter activity duration in seconds: ");
         _duration = int.Parse(Console.ReadLine());
+        Console.Clear();
 
         Console.WriteLine();
         Console.WriteLine("Get ready");
@@ -61,8 +62,13 @@ public class ListingActivity : Activity
 
         }
         Console.WriteLine();
+        Console.WriteLine("Well Done");
+        Spinner();
 
-        Console.WriteLine(DisplayUserEntries());
+        Console.WriteLine($"You entered: \n{DisplayUserEntries()}");
+
+        Console.WriteLine(GetEndingMessage());
+        Console.WriteLine("This activity lasted for "+ _duration + " seconds.");
 
     }
 
@@ -80,7 +86,7 @@ public class ListingActivity : Activity
 
         foreach (string entry in _userEntries)
         {
-            savedUserEntry = entry;
+            savedUserEntry += entry + Environment.NewLine;
         }
         
         return savedUserEntry;

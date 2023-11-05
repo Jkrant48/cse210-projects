@@ -40,7 +40,7 @@ public class ReflectionActivity : Activity
 
         _prompt = GeneratePrompt();
 
-        _question = GenerateQuestion();
+        _question = GenerateQuestion(_questions);
 
         _questionCounter = 0;
 
@@ -56,7 +56,7 @@ public class ReflectionActivity : Activity
 
         Console.Write("Enter activity duration in seconds: ");
         _duration = int.Parse(Console.ReadLine());
-
+        Console.Clear();
         Console.WriteLine();
         Console.WriteLine("Get ready");
         Pause();
@@ -84,24 +84,32 @@ public class ReflectionActivity : Activity
 
             while (DateTime.Now < endTime)
             {
+                
+                _question = GenerateQuestion(_questions);
                 Console.WriteLine($"> {_question} ");
-                _question = GenerateQuestion();
+                Spinner();
             }
+            
         }
+        Console.WriteLine("Well done.");
+        Spinner();
+        Console.WriteLine(GetEndingMessage());
 
+        Console.WriteLine("This activity lasted for "+ _duration + " seconds.");
     }
 
-    private string GenerateQuestion()
-    {
-        if (_questionCounter < _questions.Count)
+    private string GenerateQuestion(List<string> questions)
+    {   
+        string generatedQuestion = "";
+
+        if (_questionCounter < questions.Count)
         {
-            string generatedQuestion = _questions[_questionCounter];
+            generatedQuestion = questions[_questionCounter];
             _questionCounter++;
-            return generatedQuestion;
+           
         }
         
-        // Handle the case where all questions have been generated.
-        return "All questions have been generated.";
+         return generatedQuestion;
     }
     
     private string GeneratePrompt()
@@ -112,6 +120,4 @@ public class ReflectionActivity : Activity
         return randomPrompt;
     }
 
-    //displayprompt: void
-    //displayquestion: void
 }

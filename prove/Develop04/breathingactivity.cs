@@ -24,6 +24,7 @@ public class BreathingActivity : Activity
 
         Console.Write("Enter activity duration in seconds: ");
         _duration = int.Parse(Console.ReadLine());
+        Console.Clear();
 
         Console.Write("Get Ready");
         //pause function from the activity class
@@ -38,13 +39,12 @@ public class BreathingActivity : Activity
             PerformBreathingCycle(_breatheIn);
             PerformBreathingCycle(_breatheOut);
         }
-        if (DateTime.Now == endTime)
-        {
-            Console.WriteLine("Well Done!");
-        }
+        
+        Console.WriteLine("Well Done!");
         Spinner();
 
-        Console.WriteLine(GetEndingMessage());      
+        Console.WriteLine(GetEndingMessage());
+        Console.WriteLine("This activity lasted for "+ _duration +" seconds");      
     }
 
     private void PerformBreathingCycle(string message)
