@@ -10,7 +10,7 @@ class Program
         int userResponse = -1;
         do {
             Console.WriteLine("Menu Options: ");
-            Console.WriteLine("1. Start breathing activity \n2. Start reflection activity \n3. Start listing activity \n4. Quit");
+            Console.WriteLine("1. Start breathing activity \n2. Start reflection activity \n3. Start listing activity \n4. Gratitude Journal \n5. Quit");
             Console.Write("Select a choice from the menu options: ");
 
             userResponse = int.Parse(Console.ReadLine());
@@ -31,10 +31,14 @@ class Program
                 listeningActivity.RunListeningActivity();
                 break;
                 case 4:
+                GratitudeJournalActivity gratitudeJournalActivityActivity = new GratitudeJournalActivity();
+                gratitudeJournalActivityActivity.RunGratitudeJournalActivity();
+                break;
+                case 5:
                 Console.WriteLine("Thank you. Always make time to relax, breath and reflect.");
                 break;
             }
-        }while (userResponse != 4);
+        }while (userResponse != 5);
 
     }
 }

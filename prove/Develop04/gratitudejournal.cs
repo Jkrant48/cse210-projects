@@ -1,34 +1,33 @@
 
-using System.Runtime.CompilerServices;
-
-public class ListingActivity : Activity
+public class GratitudeJournalActivity : Activity
 {
     private List<string> _prompts;
-    private string _prompt;
-    private List<string> _userEntries;
+    private List<string> _entries;
     private Random _random;
+    private string _prompt;
 
-    public ListingActivity() : base ("Listing activity")
+
+    public GratitudeJournalActivity() : base ("Gratitude Journal Activity")
     {
-        _description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
-
         _prompts = new List<string>
         {
-            "Who are people that you appreciate?",
-            "What are personal strengths of yours?",
-            "Who are people that you have helped this week?",
-            "When have you felt the Holy Ghost this month?",
-            "Who are some of your personal heroes?"
+            "List three things in nature that you are grateful for.",
+            "What achievements are you grateful for?",
+            "What makes you smile and feel thankful?",
+            "Who are you grafeful in your life?",
+            "List things that happened today, that you are grateful for."
         };
+
+        _entries = new List<string>{};
+
+        _description = "This activity is intended to help you reflect on aspects of your life you are grafeful for.";
 
         _random = new Random();
 
-        _prompt = GeneratePrompt();
-
-        _userEntries = new List<string>{};
+        _prompt = GeneratePrompt(); 
     }
 
-    public void RunListeningActivity()
+    public void RunGratitudeJournalActivity()
     {
         Console.WriteLine(GetWelcomeMessage());
         Console.WriteLine();
@@ -45,7 +44,7 @@ public class ListingActivity : Activity
         Pause();
         Console.WriteLine();
 
-        Console.WriteLine("List as many responses you can to the following prompt: ");
+        Console.WriteLine("Consider the following prompt. You can enter as many answers as possible: ");
         Console.WriteLine($"----- {_prompt} -----");
         Console.Write("You may begin in: ");
         CountDown();
@@ -58,7 +57,7 @@ public class ListingActivity : Activity
         {
             Console.Write("> ");
             String userEntry = Console.ReadLine();
-            _userEntries.Add(userEntry);
+            _entries.Add(userEntry);
 
         }
         Console.WriteLine();
@@ -69,7 +68,6 @@ public class ListingActivity : Activity
 
         Console.WriteLine(GetEndingMessage());
         Console.WriteLine("This activity lasted for "+ _duration + " seconds.");
-
     }
 
     private string GeneratePrompt()
@@ -79,17 +77,16 @@ public class ListingActivity : Activity
 
         return randomPrompt;
     }
-    
-    private string DisplayUserEntries()
-    {
-        string savedUserEntry = " ";
 
-        foreach (string entry in _userEntries)
+     private string DisplayUserEntries()
+    {
+        string entries = "";
+        foreach (string entry in _entries)
         {
-            savedUserEntry += entry + Environment.NewLine;
+            entries += "- " + entry + Environment.NewLine;
         }
-        
-        return savedUserEntry;
+        return entries;
     }
-    
 }
+
+
