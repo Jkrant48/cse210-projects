@@ -16,12 +16,7 @@ public class EternalQuest
         _goals.Add(goal);
     }
 
-    
-    public void DisplayPoints()
-    {
-        
-    }
-    public void DisplayGoal()
+        public void DisplayGoal()
     {
         Console.WriteLine("The goals are:");
         for (int i = 0; i < _goals.Count; i++)
@@ -41,7 +36,7 @@ public class EternalQuest
         Console.WriteLine("Select a goal from below:");
         for (int i = 0; i < _goals.Count; i++)
         {
-            //Console.WriteLine($"{i + 1}. {_goals[i].GetName()}");
+            // display only uncompleted goals
             if (!_goals[i].Iscomplete())
             {
                 Console.WriteLine($"{i + 1}. {_goals[i].GetName()}");
@@ -53,10 +48,8 @@ public class EternalQuest
 
     public void RecordEvent()
     {
-        foreach (var goal in _goals)
-        {
-            goal.RecordEvent(_selectedGoalIndex, _goals);
-        }
+        //mark completed and add points
+        _goals[_selectedGoalIndex - 1].RecordEvent(_selectedGoalIndex, _goals);
     }
 
     
@@ -81,7 +74,31 @@ public class EternalQuest
         foreach (var line in lines)
         {
             string[] goalData = line.Split('|');
+
+            if (goalData.Length > 0)
+            {
+                Goal loadedGoal;
+
+                switch (goalData[0].Trim())
+                {
+                    case "SimpleGoal":
+                        loadedGoal = new SimpleGoal(goalData[1].Trim(), goalData[2].Trim(), int.Parse(goalData[3].Trim()));
+                    break;
+                    case "EternalGoal":
+                        loadedGoal = new EternalGoal(goalData[1].Trim(), goalData[2].Trim(), int.Parse(goalData[3].Trim()));
+                    break;
+                    case "CheckListGoal":
+                        ChecklistGoal checklistGoal = new ChecklistGoal(goalData[1].Trim(), goalData[2].Trim(), int.Parse(goalData[3].Trim()));
+                        checklistGoal.LoadGoalsFromFile(goalData);
+                        loadedGoal = checklistGoal;
+                        break;
+                    default:
+                        continue; 
+                }
+
+                _goals.Add(loadedGoal);
             
+            }
         }
     }
 

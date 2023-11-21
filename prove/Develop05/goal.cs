@@ -2,8 +2,8 @@
 
 public class Goal
 {
-    private string _goalName;
-    private string _goalDescription;
+    protected string _goalName;
+    protected string _goalDescription;
     protected int _goalPoints;
     protected int _points;
     private bool _completed;
@@ -14,6 +14,7 @@ public class Goal
         _goalName = goalName;
         _goalPoints = goalPoints;
         _points = 0;
+        _completed = false;
     }
 
     public string GetName()
@@ -75,16 +76,16 @@ public class Goal
     public virtual void SaveGoalsToFile(StreamWriter writer)
     {
         writer.WriteLine(_points);
-        string goal = $"{_goalName} | {_goalDescription} | {_goalPoints}";
+        string goal = $"{_goalName} | {_goalDescription} | {_goalPoints} | {_completed}";
         writer.WriteLine(goal);
     }
 
     public virtual void LoadGoalsFromFile(string[] data)
     {
-        _goalName = data[0];
-        _goalDescription = data[1];
-        _goalPoints = int.Parse(data[2]);
-        _completed = bool.Parse(data[3]);
+        _goalName = data[1];
+        _goalDescription = data[2];
+        _goalPoints = int.Parse(data[3]);
+        _completed = bool.Parse(data[4]);
     }
 
     public virtual void RecordEvent(int index, List<Goal> goals)

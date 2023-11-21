@@ -22,8 +22,15 @@ public class EternalGoal : Goal
 
     public override void SaveGoalsToFile(StreamWriter writer)
     {   
-        writer.WriteLine($"EternalGoal: {GetName()} | {GetDescription()} | {_goalPoints}");
+        writer.WriteLine($"EternalGoal | {GetName()} | {GetDescription()} | {_goalPoints}");
         
+    }
+
+    public override void LoadGoalsFromFile(string [] data)
+    {
+        _goalName = data[1];
+        _goalDescription = data[2];
+        _goalPoints = int.Parse(data[3]);
     }
 
     public override void RecordEvent(int index, List<Goal> goals)

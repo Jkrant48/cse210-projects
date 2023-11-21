@@ -34,12 +34,14 @@ public class ChecklistGoal : Goal
 
      public override void SaveGoalsToFile(StreamWriter writer)
     {
-        writer.WriteLine($"CheckListGoal: {GetName()} | {GetDescription()} | {_goalPoints} | {_numberOfTimes} | {_bonusPoints} | {_timesCompleted}");
+        writer.WriteLine($"CheckListGoal | {GetName()} | {GetDescription()} | {_goalPoints} | {_numberOfTimes} | {_bonusPoints} | {_timesCompleted}");
     }
 
     public override void LoadGoalsFromFile(string[] data)
     {
-        base.LoadGoalsFromFile(data);
+        _goalName = data[1];
+        _goalDescription = data[2];
+        _goalPoints = int.Parse(data[3]);
         _numberOfTimes = int.Parse(data[4]);
         _bonusPoints = int.Parse(data[5]);
         _timesCompleted = int.Parse(data[6]);
@@ -47,12 +49,13 @@ public class ChecklistGoal : Goal
 
     public override void RecordEvent(int index, List<Goal> goals)
     {
-        base.RecordEvent(index, goals);
+        
         base.AddPoints();
         _timesCompleted++;
 
         if (_timesCompleted == _numberOfTimes)
-        {
+        {   
+            base.RecordEvent(index, goals);
             _points += _bonusPoints;
         }
     }

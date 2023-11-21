@@ -23,7 +23,12 @@ public class SimpleGoal : Goal
 
     public override void SaveGoalsToFile(StreamWriter writer)
     {   
-        writer.WriteLine($"SimpleGoal: {GetName()} | {GetDescription()} | {_goalPoints}");
+        writer.WriteLine($"SimpleGoal | {GetName()} | {GetDescription()} | {_goalPoints}");
+    }
+
+    public override void LoadGoalsFromFile(string[] data)
+    {
+        base.LoadGoalsFromFile(data);
     }
 
     public override void RecordEvent(int index, List<Goal> goals)

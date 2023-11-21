@@ -1,3 +1,3 @@
-SimpleGoal: simple | SimpleGoal | 100
-EternalGoal: Eternal | EternalGoal | 200
-CheckListGoal: Check | Checking | 100 | 3 | 200 | 0
+SimpleGoal | Simple | Simple Goal | 100
+EternalGoal | Eternal | Eternal Goal | 100
+CheckListGoal | Check | Checking | 100 | 3 | 50 | 0

@@ -63,12 +63,22 @@ class Program
                 case 3:
                     Console.Write("What is the name of the file you want to save? ");
                     string fileName = Console.ReadLine();
-                    eternalQuest.SaveGoalsTofile(fileName); 
+                    eternalQuest.SaveGoalsTofile(fileName);
+                    Console.WriteLine();
+                    Console.Write("Saving to file");
+                    loading();
+                    Console.WriteLine();
+                    Console.WriteLine("File saved successfully!");
                 break;
                 case 4:
                     Console.Write("What is the name of the file you want to load? ");
                     fileName = Console.ReadLine();
                     eternalQuest.LoadGoalsFromFile(fileName);
+                    Console.WriteLine();
+                    Console.Write("Loading from file");
+                    loading();
+                    Console.WriteLine();
+                    Console.WriteLine("File loaded successfully!");
                 break;
                 case 5:
                     eternalQuest.DisplayForRecordEvent();
@@ -82,4 +92,14 @@ class Program
 
         }while (userChoice != 6);
     }
+
+    public static void loading()
+    {
+        for (int i = 5; i > 0; i--)
+        {
+            Console.Write(".");
+            Thread.Sleep(1000);
+        }
+    }
 }
+
