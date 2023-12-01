@@ -17,6 +17,8 @@ public class Address
 
     public bool IsUSA()
     {
+        bool result;
+        
         if (_country == "USA")
         {
             result = true;
