@@ -5,6 +5,7 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello! This is the ordering system.");
+        Console.WriteLine();
 
 
         //Addresses
@@ -31,8 +32,8 @@ class Program
         // Order
 
         Order order1 = new Order(new List<Product> {product1, product3, product4}, customer1);
-        Order order2 = new Order(new List<Product> {product6, product5, product4}, customer2);
-        Order order3 = new Order(new List<Product> {product4, product3, product2}, customer3);
+        Order order2 = new Order(new List<Product> {product6, product5, product9}, customer2);
+        Order order3 = new Order(new List<Product> {product8, product7, product2}, customer3);
 
 
         // Display results
@@ -40,6 +41,20 @@ class Program
         Console.WriteLine(order1.GetPackingLabel());
         Console.WriteLine(order1.GetShippingLabel());
         Console.WriteLine($"Total Cost: ${order1.CalculateTotalPrice():F2}\n");
+        Console.WriteLine();
+
+        Console.WriteLine("Order 2:");
+        Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine(order2.GetShippingLabel());
+        Console.WriteLine($"Total Cost: ${order2.CalculateTotalPrice():F2}\n");
+        Console.WriteLine();
+
+        Console.WriteLine("Order 3:");
+        Console.WriteLine(order3.GetPackingLabel());
+        Console.WriteLine(order3.GetShippingLabel());
+        Console.WriteLine($"Total Cost: ${order3.CalculateTotalPrice():F2}\n");
+
+
 
 
 
